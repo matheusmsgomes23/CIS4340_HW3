@@ -63,29 +63,39 @@ Since this assignment focused on one webpage rather than crawling multiple pages
 
 ScrapeGraphAI was used as the AI-assisted scraping tool.
 
-## Example Prompt Used
-
 ```text
 Return ONLY valid JSON. No markdown. No explanation.
 
-Extract Falcon 9 or Falcon Heavy launch rows from the HTML tables.
+Extract Falcon 9 or Falcon Heavy launch rows from the provided HTML tables.
 
-Return exactly these fields:
+Return exactly this structure:
 
-engine_number
-block_type
-flight_number
-flight_type
-launch_date
-launch_pad
-landing_location
-turnaround_days
-status
-total_launches
+{
+  "records": [
+    {
+      "engine_number": "",
+      "block_type": "",
+      "flight_number": "",
+      "flight_type": "",
+      "launch_date": "",
+      "launch_pad": "",
+      "landing_location": "",
+      "turnaround_days": "",
+      "status": "",
+      "total_launches": ""
+    }
+  ]
+}
 
 Rules:
-- Include only rows where flight number begins with F9 or FH
-- Use YYYY-MM-DD date format
-- Use 0 for missing turnaround values
-- Preserve engine IDs such as B1058
-- No extra text outside JSON
+- Include only launches where the flight number begins with F9 or FH.
+- flight_type must be F9 for Falcon 9 or FH for Falcon Heavy.
+- engine_number should preserve IDs such as B0003, B1058, etc.
+- block_type should match the engine version shown in the table.
+- Convert launch dates into YYYY-MM-DD format.
+- Preserve launch pad values such as LC-40, LC-39A, or SLC-4E.
+- Preserve landing locations exactly when available.
+- If turnaround time is missing, use 0.
+- If total launches is missing, use 1.
+- Do not summarize, explain, or add commentary.
+- Return JSON only.
