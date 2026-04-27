@@ -1,5 +1,7 @@
 # CIS4340 Homework 03 – Project Summary
 
+## Name: Matheus Santos Gomes
+
 ## Overview
 
 The goal of this assignment was to extract Falcon 9 and Falcon Heavy booster launch data from the Wikipedia page **List of Falcon 9 first-stage boosters** using two different scraping approaches:
